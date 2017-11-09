@@ -1,0 +1,9 @@
+GET     /                       controllers.Application.index()
+GET     /welcome                controllers.Application.welcome()
+
+GET     /loginForm              controllers.Users.loginForm()
+GET     /registerForm           controllers.Users.registerForm()
+POST	/login                  controllers.Users.login()
+POST	/register               controllers.Users.register()
+
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

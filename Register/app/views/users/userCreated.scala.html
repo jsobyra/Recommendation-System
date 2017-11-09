@@ -1,0 +1,12 @@
+@import com.api.Events.UserCreated
+@(user: UserCreated)(implicit flash: Flash)
+
+@import b3.vertical.fieldConstructor  // Declares a vertical field constructor as default
+
+@pageTemplate("Registered") {
+    <h2>User on page</h2>
+        <h3>@user.id</h3>
+        <h4>@user.time</h4>
+}
+
+
