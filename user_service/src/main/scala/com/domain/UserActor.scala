@@ -5,6 +5,7 @@ import com.api.Events.{UserCreated, UserLogged}
 import com.api.Requests.{CreateUser, LogUser}
 import com.domain.UserService.UserIdProvider
 import com.infrastructure.{TimeProvider, TokenProvider, UserRepository}
+import org.slf4j.Logger
 
 import scala.concurrent.Future
 
@@ -29,9 +30,9 @@ class UserActor(userIdProvider: UserIdProvider, userRepository: UserRepository, 
     if(!checkIfUserExists(email)) {
       val userId = userIdProvider.newId
       registerUser(userId, email, password)
-      sender ! UserCreated(userId, TimeProvider.now)
+      sender() ! UserCreated(userId, TimeProvider.now)
     }
-    else sender ! ResourceAlreadyExists
+    else sender() ! ResourceAlreadyExists
   }
 
   private def validateUserCredentials(email: String, password: String) = {

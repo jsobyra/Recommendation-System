@@ -2,9 +2,9 @@ package controllers
 
 import javax.inject.Inject
 
-import com.api.Events.{UserCreated, UserForm, UserLogged}
-import com.api.Requests.{BookId, UserId}
-import models.akkademy.SClient
+import com.api.Events._
+import com.domain.RecommendationId
+import models.commmunication.ServicesCommunication
 import play.api.Configuration
 import play.api.data.Form
 import play.api.data.Forms._
@@ -28,23 +28,34 @@ class Users @Inject()(val configuration: Configuration) extends Controller {
     "password" -> text)(UserForm.apply)(UserForm.unapply))
 
   def login() = Action { implicit request => {
-    val client = new SClient("127.0.0.1:2552")
+    val client = new ServicesCommunication("127.0.0.1:2552", "127.0.0.1:3000")
     val user = userForm.bindFromRequest()(request).get
-    val future = Await.result(client.logUser(user.email, user.password), 10 seconds)
-    Ok(views.html.users.userLogged(new UserLogged(
-      future.asInstanceOf[UserLogged].id,
-      future.asInstanceOf[UserLogged].token,
-      future.asInstanceOf[UserLogged].time
-    )));
+    val userLogged = Await.result(client.logUser(user.email, user.password), 10 seconds)
+    println(userLogged.asInstanceOf[UserLogged].id)
+    val userBooks = Await.result(client.getUserBooks(userLogged.asInstanceOf[UserLogged].id), 20 seconds)
+    val userRecommendation = Await.result(client.getUserRecommendation(userLogged.asInstanceOf[UserLogged].id), 20 seconds)
+    Ok(views.html.users.userLogged(
+      userLogged.asInstanceOf[UserLogged],
+      userBooks.asInstanceOf[Books].books,
+      userRecommendation.asInstanceOf[Recommendations].recommendations
+    ))
     }
   }
 
   def register() = Action { implicit request => {
-    val client = new SClient("127.0.0.1:3000")
+    val client = new ServicesCommunication("127.0.0.1:2552", "127.0.0.1:3000")
     val user = userForm.bindFromRequest()(request).get
-    val future = Await.result(client.createRecommendation(UserId("6533f835c0a64c5aa543b1015c729783")), 30 seconds)
-    println(future.toString)
-    Ok(views.html.users.userCreated(new UserCreated(future.asInstanceOf[UserCreated].id, future.asInstanceOf[UserCreated].time)))
+    val userRegistered = Await.result(client.createUser(user.email, user.password), 10 seconds)
+    println(userRegistered.asInstanceOf[UserCreated].id)
+    val recommendationId = Await.result(client.createDefaultRecommendation(userRegistered.asInstanceOf[UserCreated].id), 20 seconds)
+    println(recommendationId.asInstanceOf[RecommendationId].value)
+    val userRecommendation = Await.result(client.getUserRecommendation(userRegistered.asInstanceOf[UserCreated].id), 20 seconds)
+    println(userRecommendation.asInstanceOf[Recommendations].recommendations.length.toString)
+
+    Ok(views.html.users.userCreated(
+      userRegistered.asInstanceOf[UserCreated],
+      userRecommendation.asInstanceOf[Recommendations].recommendations
+    ))
     }
   }
 }

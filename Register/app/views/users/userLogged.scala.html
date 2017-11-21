@@ -1,5 +1,8 @@
 @import com.api.Events.UserLogged
-@(user: UserLogged)(implicit flash: Flash)
+@import com.api.Events.Book
+@import com.api.Events.Recommendation
+
+@(user: UserLogged, books: List[Book], recommendation: List[Recommendation])(implicit flash: Flash)
 
 @import b3.vertical.fieldConstructor  // Declares a vertical field constructor as default
 

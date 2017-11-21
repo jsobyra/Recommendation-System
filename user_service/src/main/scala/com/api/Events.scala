@@ -11,6 +11,8 @@ sealed trait Events {
 
 object Events {
   final case class User(id: UserId, email: String, password: String, time: Date) extends Events
+  @SerialVersionUID(30L)
   final case class UserCreated(id: UserId, time: Date) extends Events
+  @SerialVersionUID(45L)
   final case class UserLogged(id: UserId, token: String, time: Date) extends Events
 }

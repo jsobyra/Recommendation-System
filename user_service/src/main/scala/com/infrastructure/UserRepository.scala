@@ -37,6 +37,7 @@ class UserRepository(db: DefaultDB)(implicit ec: ExecutionContext) {
 
   def registerUser(id: UserId, email: String, password: String) = {
     userServiceCollection.flatMap(_.insert(User(id, email, password, TimeProvider.now)).map(_ => {}))
+    println("DONE!")
   }
 
   def getUserId(email: String, password: String): UserId = {
