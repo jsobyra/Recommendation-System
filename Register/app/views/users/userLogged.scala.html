@@ -2,15 +2,78 @@
 @import com.api.Events.Book
 @import com.api.Events.Recommendation
 
-@(user: UserLogged, books: List[Book], recommendation: List[Recommendation])(implicit flash: Flash)
+@(user: UserLogged, books: List[Book], recommendations: List[Recommendation])(implicit flash: Flash)
 
-@import b3.vertical.fieldConstructor  // Declares a vertical field constructor as default
+@import b3.vertical.fieldConstructor  // Declares a vertical field constructor as default //        <h4>@user.id</h4><h4>@user.token</h4><h4>@user.time</h4>
+
+<p><a href="@controllers.routes.Users.addBook()" class="btn">
+    <i class="icon-plus"></i> Add Book</a></p>
+<p><a href="@controllers.routes.Users.createRecommendation()" class="btn">
+    <i class="icon-plus"></i> Create Recommendation</a></p>
 
 @pageTemplate("Logined") {
     <h2>User on page</h2>
-        <h3>@user.id</h3>
-        <h3>@user.token</h3>
-        <h4>@user.time</h4>
+    <h4>@user.time</h4>
+    <h4>@user.id</h4>
+    <table>
+        <tr>
+            <th>Recommendation Id</th>
+            <th>Book Id</th>
+            <th>Author</th>
+            <th>Country</th>
+            <th>ISBN</th>
+            <th>Languages</th>
+            <th>Number of pages</th>
+            <th>Publish date</th>
+            <th>Publishers</th>
+            <th>Subjects</th>
+            <th>Title</th>
+        </tr>
+    @for(recommendation <- recommendations) {
+        <tr>
+            <td>@recommendation.recommendationId.value</td>
+            <td>@recommendation.book.bookId</td>
+            <td>@recommendation.book.author</td>
+            <td>@recommendation.book.country</td>
+            <td>@recommendation.book.isbn</td>
+            <td>@recommendation.book.languages</td>
+            <td>@recommendation.book.numberOfPages</td>
+            <td>@recommendation.book.publishDate</td>
+            <td>@recommendation.book.publishers</td>
+            <td>@recommendation.book.subjects</td>
+            <td>@recommendation.book.title</td>
+        </tr>
+    }
+    </table>
+
+    <table>
+        <tr>
+            <th>Book Id</th>
+            <th>Author</th>
+            <th>Country</th>
+            <th>ISBN</th>
+            <th>Languages</th>
+            <th>Number of pages</th>
+            <th>Publish date</th>
+            <th>Publishers</th>
+            <th>Subjects</th>
+            <th>Title</th>
+        </tr>
+        @for(book <- books) {
+            <tr>
+                <td>@book.bookId</td>
+                <td>@book.author</td>
+                <td>@book.country</td>
+                <td>@book.isbn</td>
+                <td>@book.languages</td>
+                <td>@book.numberOfPages</td>
+                <td>@book.publishDate</td>
+                <td>@book.publishers</td>
+                <td>@book.subjects</td>
+                <td>@book.title</td>
+            </tr>
+        }
+    </table>
 }
 
 

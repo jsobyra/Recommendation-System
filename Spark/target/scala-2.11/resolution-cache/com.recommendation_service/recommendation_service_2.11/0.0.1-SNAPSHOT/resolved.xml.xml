@@ -4,7 +4,7 @@
 		module="recommendation_service_2.11"
 		revision="0.0.1-SNAPSHOT"
 		status="integration"
-		publication="20171105014659"
+		publication="20171122220502"
 	>
 		<description>
 		recommendation_service

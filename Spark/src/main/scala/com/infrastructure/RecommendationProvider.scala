@@ -43,6 +43,8 @@ object UserBookHelper {
   def getBook(rdd: RDD[Document], userId: UserId): RDD[Document] = {
     rdd.filter(doc => doc.getString("userId").equals(userId.value)).distinct().cache()
   }
+
+  def getBookId(doc: Document): String = doc.getString("bookId")
 }
 
 object RecommendationHelper {

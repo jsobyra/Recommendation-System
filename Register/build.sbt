@@ -6,6 +6,7 @@ updateOptions := updateOptions.value.withCachedResolution(true)
 
 libraryDependencies += "net.sf.barcode4j" % "barcode4j" % "2.0"
 libraryDependencies ++= Seq(
+  cache,
   "com.adrianhurt" %% "play-bootstrap" % "1.0-P25-B3",
   "com.typesafe.akka" %% "akka-agent" % "2.3.6",
   "com.typesafe.akka" %% "akka-actor" % "2.3.6",

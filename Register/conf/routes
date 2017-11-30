@@ -5,5 +5,7 @@ GET     /loginForm              controllers.Users.loginForm()
 GET     /registerForm           controllers.Users.registerForm()
 POST	/login                  controllers.Users.login()
 POST	/register               controllers.Users.register()
+GET    /addBook                controllers.Users.addBook()
+GET    /createRecommendation                controllers.Users.createRecommendation()
 
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

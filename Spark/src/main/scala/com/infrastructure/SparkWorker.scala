@@ -37,7 +37,7 @@ class SparkWorker(userRepository: UserRepository, recommendationRepository: Reco
     val savedUserBooks = UserBookHelper.getBook(userBookRDD, userId)
     val savedID = savedUserBooks.map(doc => (doc.getString("bookId"))).collect().toList
 
-    sc.parallelize(userBookRDD.filter(doc => savedID.contains(BookHelper.getId(doc))).take(savedID.size))
+    sc.parallelize(bookRDD.filter(doc => savedID.contains(BookHelper.getId(doc))).take(savedID.size))
   }
 
   def getRecommendationId(userId: UserId): RecommendationId = RecommendationHelper.getRecommendationId(recommendationRDD, userId)
@@ -68,7 +68,6 @@ class SparkWorker(userRepository: UserRepository, recommendationRepository: Reco
 
   def getUserBooks(userId: UserId): Books = {
     val rddUserBooksDoc = getBooks(userId)
-
     val userBookList = rddUserBooksDoc.collect().map(doc => {
       Book(
         BookId(BookHelper.getId(doc)),
