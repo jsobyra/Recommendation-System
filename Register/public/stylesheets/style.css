@@ -1,0 +1,93 @@
+body {
+	background-color: #000000;
+	font-size: 120%;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+	background-color: #000000;
+	width: 1200px;
+	height: 1200px;
+	margin: 0 auto 0 auto;
+	border-radius: 20px;
+}
+
+header .brand {
+	color: #FFFFFF;
+	font-family: 'Pacifico', cursive;
+	font-size: 230%;
+	padding: 40px;
+}
+
+header .brand  span{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 40%;
+	padding: 20px;
+}
+
+.hero {
+	height: 300px;
+	background: #68BBA1 url('../img/booksImage.jpg') center no-repeat;
+}
+
+
+.section {
+	height: 350px;
+	width: 300px;
+	margin: 0 auto 0 auto;
+	background-color: #FFFFFF;
+	display: block;
+}
+
+.section h3 {
+	font-size: 150%;
+	font-family: 'Pacifico', cursive;
+}
+
+a:hover {
+	color: #0062FF;
+}
+
+a {
+	width: 250px;
+	height: 50px;
+	padding: 20px 0px;
+	display: block;
+	margin: 0 auto 0 auto;
+	text-align: center;
+	font-size: 150%;
+	background-color: #6495ED;
+	color: #333333;
+	font-family: 'Pacifico', cursive;
+}
+
+legend {
+	font-family: 'Pacifico', cursive;
+}
+
+label {
+	font-family: 'Open Sans', sans-serif;
+}
+
+footer {
+	text-align: center;
+	padding: 20px;
+	font-size: 90%;
+	clear: both;
+	display: block;
+	color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

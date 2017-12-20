@@ -1,7 +1,37 @@
 @()(implicit flash: Flash)
 
-@import b3.vertical.fieldConstructor  // Declares a vertical field constructor as default
-
-@pageTemplate("Welcome") {
-    <h2>Welcome</h2>
-}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book Recommendator</title>
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/style.css")">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<div class="brand">
+				Book Recommendator
+				<span>Where Interesting People Can Share Their Interests</span>
+			</div>
+		</header>
+		<div class="hero"></div>
+		<content>
+			<main>
+				<div class="section">
+					<h3>Book Recommendator</h3>
+					<div class="actions">
+						<a href="@routes.Users.registerForm()">Register</a>
+						<br>
+						<a href="@routes.Users.loginForm()">Login</a>
+					</div>
+				</div>
+			</main>
+		</content>
+		<footer>
+			&copy; 2017 Book Recommendator by Jakub Sobyra
+		</footer>
+	</div>
+</body>
+</html>

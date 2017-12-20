@@ -1,0 +1,52 @@
+@()(implicit flash: Flash)
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book Recommendator</title>
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/style.css")">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<div class="brand">
+				Book Recommendator
+				<span>Where Interesting People Can Share Their Interests</span>
+			</div>
+		</header>
+		<div class="hero"></div>
+		<content>
+			<main>
+				<div class="section">
+					<h3>Create Recommendation</h3>
+					<div class="actions">
+						<form action="@routes.Users.createRecommendation()" method="post">
+							<fieldset>
+								<legend>Create Recommendation</legend>
+								<input type="checkbox" name="author" value="Author">
+								<label for="author">Author</label>
+								<input type="checkbox" name="country" value="Country">
+								<label for="country">Country</label>
+								<br>
+								<input type="checkbox" name="language" value="Language">
+								<label for="languages">Languages</label>
+								<input type="text" name="numberOfPages" placeholder="Enter minimal number of pages">
+								<br>
+								<br>
+								<center>
+									<input type="submit" value="Create Recommendation">
+								</center>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</main>
+		</content>
+		<footer>
+			&copy; 2017 Book Recommendator by Jakub Sobyra
+		</footer>
+	</div>
+</body>
+</html>

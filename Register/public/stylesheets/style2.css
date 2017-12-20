@@ -1,0 +1,108 @@
+body {
+	background-color: #000000;
+	font-size: 120%;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+	background-color: #000000;
+	width: 1200px;
+	height: 1200px;
+	margin: 0 auto 0 auto;
+	border-radius: 20px;
+}
+
+header .brand {
+	color: #FFFFFF;
+	font-family: 'Pacifico', cursive;
+	font-size: 230%;
+	padding: 40px;
+}
+
+header .brand  span{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 40%;
+	padding: 20px;
+}
+
+.navigation ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333333;
+}
+
+.navigation li {
+	float: left;
+	border-right: 1px solid #BBBBBB;
+}
+
+.navigation a {
+	display: block;
+	color: white;
+	font-size: 120%;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.navigation li a:hover:not(.active) {
+	background-color: #111111;
+}
+
+.section {
+	height: 100%;
+	width: 100%;
+	margin: 0 auto 0 auto;
+	background-color: #FFFFFF;
+	display: block;
+}
+
+.section h2, h3 {
+	font-size: 150%;
+	font-family: 'Pacifico', cursive;
+}
+
+a {
+	width: 250px;
+	height: 50px;
+	padding: 20px 0px;
+	display: block;
+	margin: 0 auto 0 auto;
+	text-align: center;
+	font-size: 150%;
+	color: #333333;
+	font-family: 'Pacifico', cursive;
+}
+
+legend {
+	font-family: 'Pacifico', cursive;
+}
+
+label {
+	font-family: 'Open Sans', sans-serif;
+}
+
+footer {
+	text-align: center;
+	padding: 20px;
+	font-size: 90%;
+	clear: both;
+	display: block;
+	color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

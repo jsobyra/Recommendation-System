@@ -1,0 +1,46 @@
+@()(implicit flash: Flash)
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book Recommendator</title>
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/style.css")">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<div class="brand">
+				Book Recommendator
+				<span>Where Interesting People Can Share Their Interests</span>
+			</div>
+		</header>
+		<div class="hero"></div>
+		<content>
+			<main>
+				<div class="section">
+					<h3>Add Book</h3>
+					<div class="actions">
+						<form action="@routes.Users.addBook()" method="post">
+							<fieldset>
+								<legend>Enter Book to Add</legend>
+								<label for="user">Book Id</label>
+								<input type="text" name="id" placeholder="Enter Book Id">
+								<br>
+								<br>
+								<center>
+									<input type="submit" value="Add Book">
+								</center>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</main>
+		</content>
+		<footer>
+			&copy; 2017 Book Recommendator by Jakub Sobyra
+		</footer>
+	</div>
+</body>
+</html>

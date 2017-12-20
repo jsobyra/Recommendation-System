@@ -26,9 +26,20 @@ class Users @Inject()(cache: CacheApi, val configuration: Configuration) extends
     Ok(views.html.users.register())
   }
 
+  def addBookForm = Action { implicit request =>
+    Ok(views.html.users.addBook())
+  }
+
+  def createRecommendationForm = Action { implicit request =>
+    Ok(views.html.users.createRecommendation())
+  }
+
   val userForm = Form(mapping(
     "login" -> text,
     "password" -> text)(UserForm.apply)(UserForm.unapply))
+
+  val bookForm = Form(mapping(
+    "id" -> text)(BookId.apply)(BookId.unapply))
 
   def login() = Action { implicit request => {
     val client = new ServicesCommunication("127.0.0.1:2552", "127.0.0.1:3000")
@@ -49,11 +60,29 @@ class Users @Inject()(cache: CacheApi, val configuration: Configuration) extends
     }
   }
 
-  def addBook() = Action { implicit request => {
+  def userInfo() = Action { implicit request => {
     val client = new ServicesCommunication("127.0.0.1:2552", "127.0.0.1:3000")
     val user = cache.get("user").get.asInstanceOf[UserLogged]
+    val userRecommendation = Await.result(client.getUserRecommendation(user.id), 20 seconds)
+    val userBooks = Await.result(client.getUserBooks(user.id), 20 seconds)
+
+    cache.set("books", userBooks.asInstanceOf[Books].books)
+    cache.set("recommendations", userRecommendation.asInstanceOf[Recommendations].recommendations)
+
+    Ok(views.html.users.userLogged(
+      user,
+      userBooks.asInstanceOf[Books].books,
+      userRecommendation.asInstanceOf[Recommendations].recommendations
+    ))
+  }
+  }
+
+  def addBook() = Action { implicit request => {
+    val client = new ServicesCommunication("127.0.0.1:2552", "127.0.0.1:3000")
+    val bookId = bookForm.bindFromRequest()(request).get
+    val user = cache.get("user").get.asInstanceOf[UserLogged]
     val recommendations = cache.get("recommendations").get.asInstanceOf[List[Recommendation]]
-    val userBookId = Await.result(client.addBook(user.id, BookId("59e239cfc828914e5afbcdbd")), 10 seconds)
+    val userBookId = Await.result(client.addBook(user.id, bookId), 10 seconds)
     val userBooks = Await.result(client.getUserBooks(user.id), 20 seconds)
 
     cache.set("books", userBooks.asInstanceOf[Books].books)
